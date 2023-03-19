@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Minecraft Bedrock Block Finder</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link rel="stylesheet" href="assets/css/minexray.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Search</a></li>
+							<li><a href="#one">Choosing Map Files</a></li>
+                              <li><a href="#two">Further Information</a></li>
+							<li><a href="#three">Send a Tip</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+                            <h1>Minecraft Bedrock Block Finder</h1>
+                            <b><h3>Block Name To Search For:</h3></b>
+                            <input id="blockString" style="width:20em" type="text" value="diamond">
+                            <b><h3>Search Location X:
+                            <input id="xPosString" style="width:4em; display:inline" type="text" value="0">
+                            <div id="xErr" style="display: none; color: red;">Not a valid integer or beyond limits (-999999&lt;x&lt;999999).</div>
+                            Y:
+                            <input id="yPosString" style="width:4em; display:inline" type="text" value="0">
+                            <div id="yErr" style="display: none; color: red;">Not a valid integer or beyond limits (-999999&lt;x&lt;999999).</div>
+                            Z:
+                            <input id="zPosString" style="width:4em; display:inline" type="text" value="0">
+                            <div id="zErr" style="display: none; color: red;">Not a valid integer or beyond limits (-999999&lt;x&lt;999999).</div>
+                            </h3></b>
+                            <b><h3>N Blocks (max 1000):</h3></b>
+                            <input id="nBlockString" style="width:4em; display:inline" type="text" value="64">
+                            <div id="nErr" style="display: none; color: red;">Not a valid integer or beyond limits (0&lt;x&lt;1000).</div>        
+                            <b><h3>Options:</h3></b>
+                            <select id="worldType" name="worldType" style="width:12em; display:inline">
+                                <option value=0 selected>OverWorld</option>
+                                <option value=1>Nether</option>
+                                <option value=2>End</option>
+                            </select>
+                            <select id="doBlobs" name="doBlobs" style="width:12em; display:inline">
+                                <option value=1 selected>Merge to Blobs</option>
+                                <option value=0>Blocks Only</option>
+                            </select>
+                            <input type="file" id="file-selector" multiple onchange="load_local_files()">
+                            <button id="runSearch" style="display: none;">Run Block Search</button>
+                            <p id="searchingStatus" style="display: none;" class="pulsate">Searching...</p>
+                            
+                            
+                            <!-- block output table -->
+                            <div class="table-wrapper" id="blockOutput" style="display: none;max-width:33em;">
+                                <h4>Blocks Found</h4>
+                                <table class="alt" id="blockOutputTable">
+                                    <thead>
+                                        <tr>
+                                            <th>X</th>
+                                            <th>Y</th>
+                                            <th>Z</th>
+                                            <th>Size</th>
+                                            <th>XZ Dist</th>
+                                            <th>Visited</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+					          </table>
+                            </div>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Choosing Map Files</h2>
+                                        <p>This tool is for Bedrock edition Minecraft save files, and this tool will NOT work 
+                                 with Java Minecraft save files. 
+                                 The 'Choose Files' button provides a file choosing dialog window.
+                                            Select ALL the database files for the world you want to search.
+                                            The Minecraft world database files have a 'ldb' file extension.</p>
+                                            
+                                            <p>For Windows Bedrock Minecraft, the path to locate ldb files for a world is</p>
+                                        <pre><code>C:/Users/&lt;username&gt;/AppData/Local/Packages/
+Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/
+com.mojang/minecraftWorlds/&lt;world directory&gt;/db</code></pre>
+                                        <p>where &lt;username&gt; is your username on the windows machine and
+                                            &lt;world directory&gt; is a random character string for the specific world you want to search.
+                                            You will need to enable the 'show hidden files' option within Windows file explorer in order
+                                            to find the AppData folder under your username. To help you find the correct
+                                            world folder, inside each world folder is the 'world_icon' jpeg image
+                                            that matches the preview image of the world within Minecraft. Within Windows
+                                            file explorer turn on the file preview pane (View-&gt;Show-&gt;Preview pane)
+                                            to view the world_icon jpeg image.</p>
+                                            
+                                            <p>Accessing Android Bedrock Minecraft world save files is a messy process, and
+                                              I am publicly shaming Mojang/Microsoft for not having an 'Export World' function
+                                              availble for the Android version of Minecraft. Why!? Just Why!?</p>
+                                              
+                                            <p>Anyways, Android Minecraft has two storage locations: Application (the default) and External.
+                                            Minecraft world save files in the default storage location 'Application' cannot be accessed or read.
+                                            Minecraft world save files can only be accessed if the world exists in the 'External' 
+                                            storage location.
+                                            It is possible to switch between using Application and External for the file storage location
+                                            by going to Android Minecraft Settings-&gt;Storage. When you change the file storage location,
+                                            your Minecraft worlds are NOT transferred between storage locations. Thus, when you change to
+                                            the external file storage location for the first time and go to play a world, 
+                                            the world list is empty. Don't panic.
+                                            You can access your previous worlds by changing the storage location back to Application.</p>
+                                            
+                                            <p>The only way to transfer a Minecraft world to the 'External' location from the 'Application' storage
+                                            location is to sign up for a trial or pay for Realms Plus subscription. Upload the world of interest
+                                            to Realms Plus, change the storage location to 'External' in the Minecraft app, then 
+                                            download the Realms Plus world, and it will now be available in the 'External' storage location.</p>
+                                            
+                                            <p>Now that you have the Minecraft app using the 'External' storage location, 
+                                            and your world of interest is in the 'External' storage location either by 
+                                            having transferred one by downloading one from Realms Plus or having created
+                                            the world while using the 'External' storage location to begin with, you can
+                                            access the Minecraft save files. However, the standard file browser will not
+                                            allow one to access the files. I have had success using FV File Explorer App.
+                                            The app shows up on the play store as 'FV File Manager' by FolderV even though
+                                            the name of the app after installing is 'FV File Explorer'. Use FV File Manager
+                                            to save the db folder containing the ldb save files of interest to the Download
+                                            folder. Minecraft save files are located at path</p>
+                                            
+                                            <pre><code>Android/data/com.mojang.minecraftpfe/files/games/
+com.mojang/minecraftWorlds/&lt;world directory&gt;/db</code></pre>
+                                            
+                                            <p> where &lt;world directory&gt; is a random character string for the specific world
+                                                you want to search. Once the db folder and its ldb file contents are copied
+                                                to the Download folder, then it is possible to choose ALL the ldb files
+                                                from the 'Choose File' button dialog from your phones browser and perform
+                                                the block search. Alternatively, you can transfer the db folder and its contents
+                                                to a PC or Mac to perform the block search from their web browser after choosing
+                                                the ldb files from the db file you downloaded.
+                                                Again, I'll ask Why!? Just Why, Mojang!? Provide an Export World button, please!</p>
+								</div>
+							</div>
+						</section>
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+                            <h2>Further Information</h2>
+                                <p>No Information
+                                  about the world is sent to the server. The reading of the world files is performed
+                                  in your web browser client using a webassembly powered reader. Your private
+                                  world information is kept on your own computer and this webpage does not use
+                                  cookies.</p>
+                                <p>This tool does not calculate block
+                                locations from the seed of the world (like the awesome <a href="https://www.chunkbase.com">chunkbase.com</a> website). 
+                                This tool reads the world files and
+                                searches for blocks matching your input string. If a block does not exist, it
+                                means that you have not explored enough of the world to generate chunks
+                                that contain the block you are searching for. In other words, this tool cannot 
+                                calculate the location of blocks that do not exist in the world yet. However,
+                                if a block location is returned from the search you are guaranteed 
+                                that it exists in your world.</p>
+                                
+                                <p>If you have a very large map with many ldb files and the search takes a long
+                                time, then you can select a subset of the ldb files to speed the search up. You
+                                will need to try different subsets to identify which ones contain data for
+                                the location that is closest to your search XYZ location.</p>
+                                
+                                <p>Have you tried searching for block names like 'sculk', 'obsidian', 'spawner', 'brewing', etc...
+                                This <a href="https://mcreator.net/wiki/minecraft-block-and-item-list-registry-and-code-names">link</a>
+                                provides a comprehensive list of block names that you can use in your search.</p>
+                        </div>
+					</section>
+                    
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Send A Tip</h2>
+                                <p>Did you find Minecraft Bedrock Block Finder helpful? Leave a tip to show your appreciation.</p>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+             <!--JS Scripts for html -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            
+             <!-- JS Scripts for minexray -->
+             <script src="assets/js/minexray.js"></script>
+             <script src="assets/js/minexray_pre.js"></script>
+             <script src="assets/js/minexray_fileload.js"></script>
+
+
+	</body>
+</html>
