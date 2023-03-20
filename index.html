@@ -49,7 +49,7 @@
                             <div id="zErr" style="display: none; color: red;">Not a valid integer or beyond limits (-999999&lt;x&lt;999999).</div>
                             </h3></b>
                             <b><h3>N Blocks (max 1000):</h3></b>
-                            <input id="nBlockString" style="width:4em; display:inline" type="text" value="64">
+                            <input id="nBlockString" style="width:4em; display:inline" type="text" value="200">
                             <div id="nErr" style="display: none; color: red;">Not a valid integer or beyond limits (0&lt;x&lt;1000).</div>        
                             <b><h3>Options:</h3></b>
                             <select id="worldType" name="worldType" style="width:12em; display:inline">
@@ -88,13 +88,18 @@
 					</section>
 
 				<!-- One -->
-					<section id="one" class="wrapper style2 spotlights">
-						<section>
-							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+				<!--	<section id="one" class="wrapper style2 spotlights"> -->
+                        <section id="one" class="wrapper style2">
+					<!--	<section> -->
+                        <!--
+							<a href="#" class="image"><img src="images/diamonds.png" alt="" data-position="center center" /></a>
 							<div class="content">
+                        -->
 								<div class="inner">
 									<h2>Choosing Map Files</h2>
-                                        <p>This tool is for Bedrock edition Minecraft save files, and this tool will NOT work 
+                                        <p><span class="image left">
+                                        <img src="images/diamonds.png" alt>
+                                        </span>This tool is for Bedrock edition Minecraft save files, and this tool will NOT work 
                                  with Java Minecraft save files. 
                                  The 'Choose Files' button provides a file choosing dialog window.
                                             Select ALL the database files for the world you want to search.
@@ -147,7 +152,10 @@ com.mojang/minecraftWorlds/&lt;world directory&gt;/db</code></pre>
                                             <pre><code>Android/data/com.mojang.minecraftpfe/files/games/
 com.mojang/minecraftWorlds/&lt;world directory&gt;/db</code></pre>
                                             
-                                            <p> where &lt;world directory&gt; is a random character string for the specific world
+                                            <p> <span class="image right">
+                                        <img src="images/spawners.png" alt>
+                                        </span>
+                                        where &lt;world directory&gt; is a random character string for the specific world
                                                 you want to search. Once the db folder and its ldb file contents are copied
                                                 to the Download folder, then it is possible to choose ALL the ldb files
                                                 from the 'Choose File' button dialog from your phones browser and perform
@@ -156,8 +164,8 @@ com.mojang/minecraftWorlds/&lt;world directory&gt;/db</code></pre>
                                                 the ldb files from the db file you downloaded.
                                                 Again, I'll ask Why!? Just Why, Mojang!? Provide an Export World button, please!</p>
 								</div>
-							</div>
-						</section>
+						<!--	</div>
+						</section> --->
 					</section>
 
 				<!-- Two -->
@@ -187,7 +195,10 @@ com.mojang/minecraftWorlds/&lt;world directory&gt;/db</code></pre>
                                 <p>Have you tried searching for block names like 'sculk', 'obsidian', 'spawner', 'brewing', etc...
                                 This <a href="https://mcreator.net/wiki/minecraft-block-and-item-list-registry-and-code-names">link</a>
                                 provides a comprehensive list of block names that you can use in your search.</p>
-                        </div>
+             
+                                <p>For questions, bug reports, feature requests, and fanmail visit the website's <a href="https://github.com/christopherburke/minexray-html">github</a>
+                                or email to <a href="mailto:minexray@proton.me">minexray@proton.me</a></p>
+           </div>
 					</section>
                     
 				<!-- Three -->
@@ -195,6 +206,23 @@ com.mojang/minecraftWorlds/&lt;world directory&gt;/db</code></pre>
 						<div class="inner">
 							<h2>Send A Tip</h2>
                                 <p>Did you find Minecraft Bedrock Block Finder helpful? Leave a tip to show your appreciation.</p>
+                                
+                                <div id="donate-button-container">
+                                    <div id="donate-button"></div>
+                                    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+                                    <script>
+                                    PayPal.Donation.Button({
+                                    env:'production',
+                                    hosted_button_id:'9NADE4958JWUJ',
+                                    image: {
+                                    src:'https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif',
+                                    alt:'Donate with PayPal button',
+                                    title:'PayPal - The safer, easier way to pay online!',
+                                    }
+                                    }).render('#donate-button');
+                                    </script>
+                                </div>
+
 						</div>
 					</section>
 
