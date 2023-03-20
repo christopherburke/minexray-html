@@ -5,6 +5,10 @@ tool will NOT work with Java Minecraft save files.
 Use this github to post issues you are having with minexray. Thank you for taking a look,
 and may your creepers be merciful.
 
+### Future Feature Ideas
+1. 3D scatter plot of blocks using plotly
+2. Video walkthrough of choosing files
+
 ### Notes to self
 1. Make code changes
 2. git add, commit, push

@@ -160,7 +160,7 @@ function fill_block_table(nFnd, bX, bY, bZ, bD, bN, outputId, matchStr) {
       //console.log('Trying to fill table');
       $(outputId+"Table thead").append('<tr><th>X</th><th>Y</th><th>Z</th><th>Size</th><th>XZ Dist</th><th>Visited</th></tr>');
       for (i=0; i<nFnd; i++) {
-        $(outputId+"Table tbody").append(`<tr><td>${bX[i]}</td><td>${bY[i]}</td><td>${bZ[i]}</td><td>${bN[i]}</td><td>${bD[i]}</td><td><input type="checkbox" id="chkb${i}"><label for="chkb${i}">${i+1}</label></td></tr>`);
+        $(outputId+"Table tbody").append(`<tr><td>${bX[i]}</td><td>${bY[i]}</td><td>${bZ[i]}</td><td>${bN[i]}</td><td>${parseInt(bD[i])}</td><td><input type="checkbox" id="chkb${i}"><label for="chkb${i}">${i+1}</label></td></tr>`);
       }
       $(outputId).show();
     }
